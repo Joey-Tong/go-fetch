@@ -1,6 +1,9 @@
 package fetch
 
-import "time"
+import (
+	"time"
+	"crypto/tls"
+)
 
 // Options http client options
 // default option
@@ -13,6 +16,7 @@ type Options struct {
 	Body    []byte
 	Header  map[string]string
 	Timeout time.Duration
+        TLSConfig *tls.Config
 }
 
 // NewDefaultOptions create a default options
@@ -25,5 +29,6 @@ func NewDefaultOptions() Options {
 		},
 		Body:    nil,
 		Timeout: 20 * time.Second,
+                TLSConfig: &tls.Config{},
 	}
 }

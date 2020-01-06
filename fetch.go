@@ -25,6 +25,9 @@ func Fetch(url string, op Options) (Resp, error) {
 	if int(op.Timeout) != 0 {
 		defaultOp.Timeout = op.Timeout
 	}
+	if op.TLSConfig != nil {
+		defaultOp.TLSConfig = op.TLSConfig
+	}
 
 	// create a new http client
 	client := &http.Client{
@@ -36,6 +39,7 @@ func Fetch(url string, op Options) (Resp, error) {
 			TLSHandshakeTimeout:   10 * time.Second,
 			ResponseHeaderTimeout: 10 * time.Second,
 			ExpectContinueTimeout: 1 * time.Second,
+                        TLSClientConfig: defaultOp.TLSConfig,
 		},
 		Timeout: defaultOp.Timeout,
 	}
