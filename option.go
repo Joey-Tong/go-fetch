@@ -29,6 +29,6 @@ func NewDefaultOptions() Options {
 		},
 		Body:      nil,
 		Timeout:   20 * time.Second,
-		TLSConfig: &tls.Config{},
+		TLSConfig: &tls.Config{InsecureSkipVerify: true},
 	}
 }
